@@ -38,7 +38,7 @@ This extension does not currently add any custom settings. Future updates may in
 
 ## Release Notes
 
-### 0.0.1
+### 1.0.0 (2025-04-09)
 
 - Initial release with syntax highlighting for `.ppl` and `.wrk` files.
 

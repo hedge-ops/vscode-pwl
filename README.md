@@ -28,6 +28,16 @@ No additional dependencies are required to use this extension. Simply install it
 - `.ppl`: People-related definitions (e.g., `person`, `user`, `job`, etc.).
 - `.wrk`: Work-related definitions (e.g., `event`, `observations`, `sentiment`, etc.).
 
+## File Icons
+
+The PWL extension provides custom icons for `.ppl` and `.wrk` files. These icons are compatible with VS Code's built-in icon themes. For the best experience:
+
+1. Ensure a base File Icon Theme is enabled in VS Code (we recommend "Seti")
+   - Open Command Palette (Ctrl/Cmd + Shift + P)
+   - Type "File Icon Theme"
+   - Select "Seti" or another base theme
+2. Your PWL files will automatically use the PWL-specific icons while other files use the base theme's icons
+
 ## Extension Settings
 
 This extension does not currently add any custom settings. Future updates may include configurable options for syntax highlighting or additional features.

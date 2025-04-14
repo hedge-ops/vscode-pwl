@@ -2,7 +2,7 @@
   "name": "vscode-pwl",
   "displayName": "People Work Language",
   "description": "A Visual Studio Code extension for syntax highlighting and language support for People Work Language (PWL) files, including .ppl and .wrk.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.99.0"
   },
@@ -33,13 +33,6 @@
         "language": "pwl",
         "scopeName": "source.pwl",
         "path": "./syntaxes/pwl.tmLanguage.json"
-      }
-    ],
-    "iconThemes": [
-      {
-        "id": "pwl-icons",
-        "label": "PWL Icons",
-        "path": "./fileicons/pwl-icon-theme.json"
       }
     ]
   },

@@ -4,10 +4,10 @@
         "iconPath": "./pwl-file-icon.svg"
       },
       "_ppl_file": {
-        "iconPath": "./ppl-file-icon.svg"
+        "iconPath": "./pwl-file-icon.svg"
       },
       "_wrk_file": {
-        "iconPath": "./wrk-file-icon.svg"
+        "iconPath": "./pwl-file-icon.svg"
       }
     },
     "fileExtensions": {

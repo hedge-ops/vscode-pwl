@@ -53,10 +53,15 @@
   "icon": "images/icon.png",
   "publisher": "hedge-ops",
   "scripts": {
-    "vscode:prepublish": "echo 'No compilation needed for syntax-only extension'",
-    "test": "echo \"No tests specified\" && exit 0"
+    "lint": "eslint .",
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "tsc",
+    "vscode:prepublish": "npm run lint && npm run test && npm run build && vsce package --no-dependencies"
   },
   "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0",
     "typescript": "^5.8.3",
     "vsce": "^2.10.0"
   },

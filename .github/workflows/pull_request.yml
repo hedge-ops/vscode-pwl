@@ -1,0 +1,17 @@
+on:
+    pull_request:
+      branches:
+        - main
+
+name: Validate Pull Request
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - run: npm ci
+      - name: Validate Extension
+        run: npm run vscode:prepublish

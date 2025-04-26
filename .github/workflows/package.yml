@@ -1,0 +1,24 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+name: Package VSCode Extension
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - run: npm ci
+      - name: Validate Extension
+        run: npm run vscode:prepublish
+      - name: Package Extension
+        run: npx vsce package --no-dependencies
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vscode-pwl
+          path: "*.vsix"

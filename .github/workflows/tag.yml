@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+  
+name: Create Git Tag for Release
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Create Git Tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Version: $VERSION"
+
+          git tag -a "v$VERSION" -m "Release v$VERSION"
+          git push https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git "v$VERSION"

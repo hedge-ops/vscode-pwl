@@ -14,6 +14,13 @@ jobs:
           node-version: 23
       - name: Install Dependencies
         run: npm ci
+      - name: Bump Version
+        id: bump_version
+        run: |
+          # Bump the version (e.g., patch, minor, or major)
+          npm version patch -m "Bump version to %s [skip ci]"
+          # Push the updated package.json and package-lock.json
+          git push origin HEAD
       - name: Package Extension
         run: npx vsce package --no-dependencies
       - name: Create Git Tag

@@ -26,18 +26,12 @@ jobs:
         run: |
           # Bump the version (e.g., patch, minor, or major)
           npm version patch -m "Bump version to %s [skip ci]"
-          # Push the updated package.json and package-lock.json
-          git push https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git HEAD:main
-      - name: Package Extension
-        run: npx vsce package --no-dependencies
-      - name: Bump Version
-        run: |
-          # Bump the version (e.g., patch, minor, or major)
-          npm version patch -m "Bump version to %s [skip ci]"
           # Pull the latest changes from the remote main branch
           git pull --rebase https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git main
           # Push the updated package.json and package-lock.json
           git push https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git HEAD:main
+      - name: Package Extension
+        run: npx vsce package --no-dependencies
       - name: Create Git Tag
         run: |
           VERSION=$(node -p "require('./package.json').version")

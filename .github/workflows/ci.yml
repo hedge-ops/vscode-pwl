@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 23
@@ -23,7 +25,8 @@ jobs:
       - name: Bump Version
         id: bump_version
         run: |
-          git pull
+          # Pull the latest changes from the remote feature branch
+          git pull --rebase https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git ${{ github.head_ref }}
           # Bump the version (e.g., patch, minor, or major)
           npm version patch -m "Bump version to %s [skip ci]"
           # Push the updated package.json and package-lock.json to the feature branch

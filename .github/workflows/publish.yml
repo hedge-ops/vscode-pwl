@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 23
       - name: Download Package Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: vscode-pwl
       - name: Create Git Tag

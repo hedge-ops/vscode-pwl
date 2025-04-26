@@ -1,17 +1,20 @@
 on:
-  push:
+  pull_request:
     branches:
       - main
 
-name: Publish Extension
+name: Validate and Publish VSCode Extension
 jobs:
-  publish:
+  package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 23
+      - run: npm ci
+      - name: Pre-publish
+        run: npm run vscode:prepublish
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
@@ -24,13 +27,10 @@ jobs:
           # Bump the version (e.g., patch, minor, or major)
           npm version patch -m "Bump version to %s [skip ci]"
           # Push the updated package.json and package-lock.json
-          git push origin HEAD
+          git push https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git HEAD:main
       - name: Package Extension
         run: npx vsce package --no-dependencies
       - name: Create Git Tag
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: tag
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "Version: $VERSION"
@@ -39,7 +39,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git tag -a "v$VERSION" -m "Release v$VERSION"
-          git push origin "v$VERSION"
+          git push https://x-access-token:${{ secrets.REPO_WRITE_TOKEN }}@github.com/hedge-ops/vscode-pwl.git "v$VERSION"
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v2
         with:

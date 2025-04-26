@@ -17,6 +17,7 @@ jobs:
       - name: Package Extension
         run: npx vsce package --no-dependencies
       - name: Create Git Tag
+        env: ${{ secrets.GITHUB_TOKEN }}
         id: tag
         run: |
           VERSION=$(node -p "require('./package.json').version")

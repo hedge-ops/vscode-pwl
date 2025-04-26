@@ -23,6 +23,7 @@ jobs:
       - name: Bump Version
         id: bump_version
         run: |
+          git pull
           # Bump the version (e.g., patch, minor, or major)
           npm version patch -m "Bump version to %s [skip ci]"
           # Push the updated package.json and package-lock.json to the feature branch

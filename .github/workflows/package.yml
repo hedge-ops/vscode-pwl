@@ -1,0 +1,22 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+name: Package Extension
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - run: npm ci
+      - name: Package Extension
+        run: npm run vscode:prepublish
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: vscode-pwl
+          path: "*.vsix"

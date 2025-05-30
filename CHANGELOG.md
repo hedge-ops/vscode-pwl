@@ -2,6 +2,10 @@
 
 All notable changes to the "vscode-pwl" extension will be documented in this file.
 
+## [1.0.4]
+
+- Updated logo image
+
 ## [1.0.3]
 
 - Build: Added GitHub Actions workflow for publishing the extension
